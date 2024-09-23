@@ -6,15 +6,11 @@ class Solution {
             nz.add(nums[i]);
         }
       }
-      int arr[]=new int[nums.length];
       for(int i=0;i<nz.size();i++){
-             arr[i]=nz.get(i);
+            nums[i]=nz.get(i);
       }
       for(int i=nz.size();i<nums.length;i++){
-        arr[i]=0;
-      }
-      for(int i=0;i<nums.length;i++){
-        nums[i]=arr[i];
+        nums[i]=0;
       }
     }
 }
