@@ -1,19 +1,14 @@
 class Solution {
-    public int reverse(int x) {
-        int sum=0;
-        int r;
-        while(x!=0){
-             r=x%10;
-            
-             x=x/10;
-             if(sum>Integer.MAX_VALUE/10 || sum==Integer.MAX_VALUE/10 && r>7)
-        return 0;
-        if(sum<Integer.MIN_VALUE/10 || sum==Integer.MIN_VALUE/10 && r<-8)
-            return 0;
-             sum=sum*10+r;
+    public int reverse(int num) {
+        int rev=0;
+        while(num!=0){
+           int rem=num%10;
+           rev=rev*10+rem;
+           num=num/10; 
         }
-        
-            
-        return sum;
+        if(rev<Integer.MIN_VALUE || rev>Integer.MAX_VALUE){
+            return 0;
+        }
+        return (int)rev;
     }
 }
