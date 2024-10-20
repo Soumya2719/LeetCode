@@ -3,7 +3,7 @@ class Solution {
        ArrayList<Integer> list=new ArrayList<>();
       String st=""+x;
        for(int i=0;i<words.length;i++){
-        if(words[i].contains(st)){
+        if(words[i].indexOf(x)!=-1){
             list.add(i);
         }
        } 
