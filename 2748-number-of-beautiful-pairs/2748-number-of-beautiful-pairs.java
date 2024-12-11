@@ -3,11 +3,7 @@ class Solution {
         int count=0;
         for(int i=0;i<nums.length-1;i++){
             for(int j=i+1;j<nums.length;j++){
-                String str1=nums[i]+"";
-                String str2=nums[j]+"";
-                int a=Integer.parseInt(str1.charAt(0)+"");
-                int b=Integer.parseInt(str2.charAt(str2.length()-1)+"");
-                if(gcd(a,b)==1)
+                if(gcd(firstDigit(nums[i]),nums[j]%10)==1)
                 count++;
 
             }
@@ -22,5 +18,11 @@ class Solution {
         return b;
         return gcd(b%a,a);
         
+    }
+    public int firstDigit(int a){
+        while(a>=10){
+            a/=10;
+        }
+        return a;
     }
 }
