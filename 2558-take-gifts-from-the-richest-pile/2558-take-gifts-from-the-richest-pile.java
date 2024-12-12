@@ -1,20 +1,24 @@
 class Solution {
     public long pickGifts(int[] gifts, int k) {
-      ArrayList<Integer> list=new ArrayList<>();
-      for(int i:gifts)
-      list.add(i);
-      PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
-      for(int i:list){
-        pq.add(i);
-      }
-      for(int i=0;i<k;i++){
-         int max=pq.poll();
-         pq.add((int)(Math.sqrt(max)));
-      }
-      long sum=0;
-      while(pq.size()>0){
-           sum+=pq.poll();
-      }
-      return sum;
+        for(int i=1;i<=k;i++){
+            int temp=findMax(gifts);
+            gifts[temp]=(int)Math.sqrt(gifts[temp]);
+        }
+       long sum=0;
+        for(int i:gifts){
+            sum+=i;
+        }
+        return sum;
+    }
+    public int findMax(int arr[]){
+        int index=0;
+        int max=arr[0];
+        for(int i=1;i<arr.length;i++){
+            if(max<arr[i]){
+                max=arr[i];
+                index=i;
+            }
+        }
+        return index;
     }
 }
