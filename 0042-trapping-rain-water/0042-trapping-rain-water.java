@@ -1,36 +1,26 @@
 class Solution {
     public int trap(int[] height) {
+        int pmax[]=new int[height.length];
+        int smax[]=new int[height.length];
         int amount=0;
-        int pfmax[]=new int[height.length];
-        int sfmax[]=new int[height.length];
-        pfmax=prefixMax(height);
-        sfmax=suffixMax(height);
+        pmax[0]=height[0];
+        for(int i=1;i<height.length;i++){
+            pmax[i]=Math.max(pmax[i-1],height[i]);
+        }
+        smax[height.length-1]=height[height.length-1];
+        for(int i=height.length-2;i>=0;i--){
+              smax[i]=Math.max(smax[i+1],height[i]);
+        }
+
         for(int i=1;i<height.length-1;i++){
-            int lb=pfmax[i-1];
-            int rb=sfmax[i+1];
+            int lb=pmax[i-1];
+            int rb=smax[i+1];
             int yb=Math.min(lb,rb);
             int contri=yb-height[i];
-            if(contri>0)
-            amount+=contri;
+            if(contri>0){
+                amount+=contri;
+            }
         }
         return amount;
-    }
-    public static int[] prefixMax(int arr[]){
-        int n=arr.length;
-        int pfmax[]=new int[n];
-        pfmax[0]=arr[0];
-        for(int i=1;i<n;i++){
-            pfmax[i]=Math.max(pfmax[i-1],arr[i]);
-        }
-        return pfmax;
-    }
-    public static int[] suffixMax(int arr[]){
-        int n=arr.length;
-        int sfmax[]=new int[n];
-        sfmax[n-1]=arr[n-1];
-        for(int i=n-2;i>=0;i--){
-            sfmax[i]=Math.max(sfmax[i+1],arr[i]);
-        }
-        return sfmax;
     }
 }
